@@ -1,0 +1,8 @@
+[all:vars]
+env=development
+
+[appservers]
+107.170.99.121
+
+[dbservers]
+107.170.99.121

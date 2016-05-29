@@ -19,6 +19,10 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'compressor',
+    'yak.rest_core',
+    'yak.rest_user',
+    'rest_framework',
+    'potato'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -56,6 +60,26 @@ TEMPLATES = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'PAGE_SIZE': 20,
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'oauth2_provider.ext.rest_framework.OAuth2Authentication',
+    ),
+    'DEFAULT_PERMISSION_CLASSES': (
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly',
+    ),
+    'DEFAULT_RENDERER_CLASSES': (
+        'djangorestframework_camel_case.render.CamelCaseJSONRenderer',  # Any other renders
+    ),
+    'DEFAULT_PAGINATION_CLASSES': (
+        'rest_framework.pagination.PageNumberPagination',
+    ),
+    'DEFAULT_PARSER_CLASSES': (
+        'djangorestframework_camel_case.parser.CamelCaseJSONParser',  # Any other parsers
+        'stories.api.parsers.CamelCaseMultiPartParser',
+        'rest_framework.parsers.FormParser',
+    ),
+}
 
 DATABASES = {
     'default': {
